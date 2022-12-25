@@ -36,8 +36,6 @@ spec:
         sh ''' 
         export AWS_DEFAULT_REGION=us-east-1
         set -xe
-        make build
-        make push
         make deploy
         make ingress
         '''
