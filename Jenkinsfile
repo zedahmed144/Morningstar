@@ -25,7 +25,7 @@ spec:
 ) {
     properties([
       pipelineTriggers([
-        // build job if there was a github push
+        // build job if there was a github pushh
         [$class: 'GitHubPushTrigger'],
         // pollSCM('*/1 * * * *'), // poll every 1 minute
         ])

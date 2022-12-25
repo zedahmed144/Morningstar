@@ -1,7 +1,7 @@
 account = $(shell aws sts get-caller-identity --query "Account" --output text)
 repo = morningstar
 region = us-east-1
-version = 1.0
+version = 2.0
 
 
 build:
@@ -17,6 +17,7 @@ push: login
 
 deploy: 
 	cat manifests/manifest.yaml | sed "s/ACCT_NUMBER/$(account)/g; s/region-change/$(region)/g; s/version-change/$(version)/g" | kubectl apply -f -
+
 
 ingress:
 	kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v1.5.1/deploy/static/provider/aws/deploy.yaml
