@@ -17,3 +17,7 @@ push: login
 
 deploy: 
 	cat manifests/manifest.yaml | sed "s/ACCT_NUMBER/$(account)/g; s/region-change/$(region)/g; s/version-change/$(version)/g" | kubectl apply -f -
+
+ingress:
+	kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v1.5.1/deploy/static/provider/aws/deploy.yaml
+	kubectl -n ingress-nginx patch service ingress-nginx-controller -p '{"spec":{"externalTrafficPolicy":"Cluster"}}'
