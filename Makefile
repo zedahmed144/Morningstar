@@ -18,5 +18,5 @@ deploy:	push
 	cat manifests/deploy.yaml | sed "s/ACCT_NUMBER/$(account)/g; s/region-change/$(region)/g; s/version-change/$(version)/g" | kubectl apply -f -
 
 ingress:
-	kubectl apply -f manifests/ingress-controller-alb.yaml
+	kubectl delete -f manifests/ingress-controller-alb.yaml
 	kubectl -n ingress-nginx patch service ingress-nginx-controller -p '{"spec":{"externalTrafficPolicy":"Cluster"}}'
