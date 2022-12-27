@@ -16,4 +16,4 @@ push: login
 
 
 deploy: push 
-	cat manifests/manifest.yaml | sed "s/ACCT_NUMBER/$(account)/g; s/region-change/$(region)/g; s/version-change/$(version)/g" | kubectl apply -f -
+	cat manifests/deploy.yaml | sed "s/ACCT_NUMBER/$(account)/g; s/region-change/$(region)/g; s/version-change/$(version)/g" | kubectl apply -f -
