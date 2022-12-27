@@ -3,7 +3,7 @@
 #
 # Instructions:
 # =============
-# 1. Create an empty directory and copy this file into it.
+# 1. Create an emppty directory and copy this file into it.
 #
 # 2. Create image with: 
 #	docker build --tag timeoff:latest .
