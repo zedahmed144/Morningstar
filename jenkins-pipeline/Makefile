@@ -13,11 +13,11 @@ build: testing
 login: build
 	aws ecr get-login-password --region $(region) | docker login --username AWS --password-stdin $(account).dkr.ecr.$(region).amazonaws.com
 
-push: 
+push: login
 	docker tag $(image):$(version) $(account).dkr.ecr.$(region).amazonaws.com/$(image):$(version)
 	docker push $(account).dkr.ecr.$(region).amazonaws.com/$(image):$(version)
 
-deploy: 
+deploy: push
 	cat jenkins.yaml | sed "s/ACCT_NUMBER/$(account)/g;s/IMAGE/$(image)/g;s/VERSION/$(version)/g;s/REGION/$(region)/g" | kubectl apply -f -
 
 delete:
