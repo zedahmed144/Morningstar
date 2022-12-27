@@ -8,15 +8,15 @@ data "aws_availability_zones" "available" {
 }
 
 # VPC
-resource "aws_vpc" "centos_vpc" {
+resource "aws_vpc" "morningstar_vpc" {
   cidr_block       = var.vpc_cidr
   instance_tenancy = "default"
   enable_dns_hostnames = true
   enable_dns_support   = true
 
   tags = {
-    Name = "centos_vpc"
-    "kubernetes.io/cluster/centos_eks" = "shared"
+    Name = "morningstar_vpc"
+    "kubernetes.io/cluster/morningstar_eks" = "shared"
   }
 }
 
@@ -24,14 +24,14 @@ resource "aws_vpc" "centos_vpc" {
 resource "aws_subnet" "public" {
   count = var.availability_zones_count
 
-  vpc_id            = aws_vpc.centos_vpc.id
+  vpc_id            = aws_vpc.morningstar_vpc.id
   cidr_block        = cidrsubnet(var.vpc_cidr, var.subnet_cidr_bits, count.index)
   availability_zone = data.aws_availability_zones.available.names[count.index]
   map_public_ip_on_launch = true
 
   tags = {
-    Name                                       = "centos_public_subnet"
-    "kubernetes.io/cluster/centos_eks"         = "shared"
+    Name                                       = "morningstar_public_subnet"
+    "kubernetes.io/cluster/morningstar_eks"         = "shared"
     "kubernetes.io/role/elb"                   = 1
   }
   
@@ -41,36 +41,36 @@ resource "aws_subnet" "public" {
 resource "aws_subnet" "private" {
   count = var.availability_zones_count
 
-  vpc_id            = aws_vpc.centos_vpc.id
+  vpc_id            = aws_vpc.morningstar_vpc.id
   cidr_block        = cidrsubnet(var.vpc_cidr, var.subnet_cidr_bits, count.index + var.availability_zones_count)
   availability_zone = data.aws_availability_zones.available.names[count.index]
   map_public_ip_on_launch = false
 
   tags = {
-    Name                                       = "centos_private_subnet"
-    "kubernetes.io/cluster/centos_eks"         = "shared"
+    Name                                       = "morningstar_private_subnet"
+    "kubernetes.io/cluster/morningstar_eks"         = "shared"
     "kubernetes.io/role/elb"                   = 1
   }
 }
 
 # Internet Gateway
-resource "aws_internet_gateway" "centos_igw" {
-  vpc_id = aws_vpc.centos_vpc.id
+resource "aws_internet_gateway" "morningstar_igw" {
+  vpc_id = aws_vpc.morningstar_vpc.id
 
   tags = {
-    "Name" = "centos_igw"
+    "Name" = "morningstar_igw"
   }
 
-  depends_on = [aws_vpc.centos_vpc]
+  depends_on = [aws_vpc.morningstar_vpc]
 }
 
 # NAT Elastic IP
 resource "aws_eip" "main" {
   vpc        = true
-  depends_on = [aws_internet_gateway.centos_igw]
+  depends_on = [aws_internet_gateway.morningstar_igw]
 
   tags = {
-    Name = "centos_ngw_ip"
+    Name = "morningstar_ngw_ip"
   }
 }
 
@@ -80,33 +80,33 @@ resource "aws_nat_gateway" "main" {
   subnet_id     = aws_subnet.public[0].id
 
   tags = {
-    Name = "centos_ngw"
+    Name = "morningstar_ngw"
   }
-  depends_on = [aws_internet_gateway.centos_igw]
+  depends_on = [aws_internet_gateway.morningstar_igw]
 }
 
 # Routing table for public subnet
 resource "aws_route_table" "public" {
-  vpc_id = aws_vpc.centos_vpc.id
+  vpc_id = aws_vpc.morningstar_vpc.id
 
   tags = {
-    Name = "centos_public_rt"
+    Name = "morningstar_public_rt"
   }
 }
 
 # Routing table for private subnet
 resource "aws_route_table" "private" {
-  vpc_id = aws_vpc.centos_vpc.id
+  vpc_id = aws_vpc.morningstar_vpc.id
 
   tags = {
-    Name = "centos_private_rt"
+    Name = "morningstar_private_rt"
   }
 }
 
 # Add route to route table
 resource "aws_route" "public_internet_gateway" {
   route_table_id         = aws_route_table.public.id
-  gateway_id             = aws_internet_gateway.centos_igw.id
+  gateway_id             = aws_internet_gateway.morningstar_igw.id
   destination_cidr_block = "0.0.0.0/0"
   depends_on             = [aws_route_table.public]
 }
@@ -137,8 +137,8 @@ resource "aws_route_table_association" "private" {
 
 
 
-resource "aws_eks_cluster" "centos_eks" {
-  name     = "centos_eks"
+resource "aws_eks_cluster" "morningstar_eks" {
+  name     = "morningstar_eks"
   version = "1.23"
   role_arn = aws_iam_role.cluster.arn
  
@@ -160,7 +160,7 @@ resource "aws_eks_cluster" "centos_eks" {
 
 # EKS Cluster IAM Role
 resource "aws_iam_role" "cluster" {
-  name = "centos_eks_cluster_role"
+  name = "morningstar_eks_cluster_role"
   assume_role_policy = <<POLICY
 {
   "Version": "2012-10-17",
