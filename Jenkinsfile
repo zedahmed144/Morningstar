@@ -39,7 +39,6 @@ spec:
         cd Timeoff-App/
         make deploy
         cd ..
-        make ingress
         '''
       }
     }
