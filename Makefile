@@ -5,7 +5,7 @@ version = 1.0
 
 
 build:
-	cd Timeoff
+	cd Timeoff-App/
 	docker build -t $(repo):$(version) .
 	cd ..
 
