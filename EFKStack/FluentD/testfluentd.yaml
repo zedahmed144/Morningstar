@@ -27,10 +27,6 @@ spec:
             value: "efk-centos-22b"
           - name: "S3_BUCKET_REGION"
             value: "us-east-1"
-          #- name: AWS_ACCESS_KEY
-         #  value: "AKIA4ZRSWNPG7JZVO4BS"
-         # - name: AWS_SECRET_KEY
-         #   value: "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"
           - name:  FLUENT_ELASTICSEARCH_HOST
             value: "elasticsearch.kube-logging.svc.cluster.local"
           - name:  FLUENT_ELASTICSEARCH_PORT
