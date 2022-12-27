@@ -6,7 +6,7 @@ version = 1.0
 
 build:
 	cd Timeoff-App/
-	docker build -t $(repo):$(version) .
+	docker build -t $(repo):$(version) -f ./Dockerfile
 	cd ..
 
 login: build
