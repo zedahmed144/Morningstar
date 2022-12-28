@@ -104,7 +104,8 @@ To access the apps, we will use:
 5. Have multiple stages to test the image before deploying.
 6. Migrate from an Alpine base image for TimeOff app, to a NodeJs base image to reduce dependecies and size.
 7. Run TimeOff as a statefulSet for high consistency.
-8. All the above project, inclusing the Timeoff app, EKS, and Jenkins itself. can be deployed automatically through a 3rd Jenkins pipeline.
+8. More security practices can be implemented (WAF, Encrypted DB, Network Policy, Service Accounts ..).
+9. All the above project, inclusing the Timeoff app, EKS, and Jenkins itself. can be deployed automatically through a 3rd Jenkins pipeline.
 
 ### Problems I faced
 
