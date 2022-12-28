@@ -1,8 +1,8 @@
 <?xml version='1.1' encoding='UTF-8'?>
 <jenkins.branch.OrganizationFolder plugin="branch-api@2.1051.v9985666b_f6cc">
   <actions/>
-  <description>In GitHub/312-bc org, it scans repositories matching regex expression &apos;GITHUB_BRANCH&apos; and their branches. Pipeline will run if Jenkinsfile found in the root dir. </description>
-  <displayName>22b-centos-org-scan</displayName>
+  <description>In GitHub/Morningstar org, it scans repositories matching regex expression &apos;GITHUB_BRANCH&apos; and their branches. Pipeline will run if Jenkinsfile found in the root dir. </description>
+  <displayName>Morningstar</displayName>
   <properties>
     <jenkins.branch.OrganizationChildHealthMetricsProperty>
       <templates>
@@ -49,7 +49,7 @@
   <disabled>false</disabled>
   <navigators>
     <org.jenkinsci.plugins.github__branch__source.GitHubSCMNavigator plugin="github-branch-source@1696.v3a_7603564d04">
-      <repoOwner>312-bc</repoOwner>
+      <repoOwner>Morningstar</repoOwner>
       <apiUri>https://api.github.com</apiUri>
       <credentialsId>8d340b43-a24c-4de0-a3c9-c706f1b23a2e</credentialsId>
       <traits>

@@ -9,7 +9,7 @@ sed -i "s,GITHUB_USER,${GITHUB_USER},g; \
 
 sed -i "s,GITHUB_REPO,${GITHUB_REPO},g; \
         s,GITHUB_BRANCH,${GITHUB_BRANCH},g;" \
-    ${DESTINATION_DIR}/jobs/22b-centos/config.xml    
+    ${DESTINATION_DIR}/jobs/Morningstarconfig.xml    
 sed -i "s,JENKINS_BUILD_USER,${JENKINS_BUILD_USER},g; \
         s,JENKINS_BUILD_PASS,${JENKINS_BUILD_PASS},g; \
         s,JENKINS_ADMIN_USER,${JENKINS_ADMIN_USER},g; \
