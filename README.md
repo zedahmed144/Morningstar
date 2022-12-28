@@ -9,19 +9,21 @@ This project uses the following tools:
 - [Jenkins][fluentd]
 - [Terraform][kibana]
 
-## Contents
 
+### Content
 - [Introduction](#Introduction)
   - [Kubernetes](#Kubernetes)
   - [Jenkins](#Jenkins)
   - [Terraform](#Terraform)
 - [Functionality](#Functionality)
 - [Configuration](#Configuration)
-  - [Step 1: Deploying a containerized cluster on AWS](Step-1:-Deploying-a-containerized-cluster-on-AWS)
-  - [Step 2: Setting up Jenkins pipelines](Step-2:-Setting-up-Jenkins-pipelines)
-  - [Step 3: Deploying TimeOff application](Step3:-Deploying-TimeOff-application)
-- [Reference](#Reference)
-- [Future Improvements](#Future-Improvements)
+  - [Step 1: Deploying a containerized cluster on AWS](#Step-1:-Deploying-a-containerized-cluster-on-AWS)
+  - [Step 2: Setting up Jenkins pipelines](#Step-2:-Setting-up-Jenkins-pipelines)
+  - [Step 3: Deploying TimeOff application](#Step3:-Deploying-TimeOff-application)
+- [Considerations](#Considerations)
+  - [Future Improvements](#Future-Improvements)
+  - [Problems I faced](#Problems-I-faced)
+
 
 
 
@@ -57,7 +59,7 @@ Terraform is an infrastructure as code tool that lets you define both cloud and 
 ## Functionality
 
 <p align="center">
-  <img width="500" height="300" src="https://github.com/312-bc/devops-tools-22b-centos/blob/ahmed/Kubernetes/EFKStack/image.png?raw=true">
+  <img width="500" height="300" src="https://raw.githubusercontent.com/zedahmed144/Morningstar/master/solution-diagram.png?raw=true">
 </p>
 
 A CICD pipeline is setup to continiously integrate and deploy changes made to the code. A push to the GitHub repo will send a payload to jenkins which will trigger a new build of our application, as well as deploying that to our infrastructure.
@@ -93,7 +95,7 @@ To access the apps, we will use:
 
 ## Considerations
 
-Future Improvements:
+### Future Improvements
 
 1. Jenkins cannot be Internet Facing.
 2. Use Ingress to resolve to services instead of NodePort.
@@ -104,29 +106,10 @@ Future Improvements:
 7. Run TimeOff as a statefulSet for high consistency.
 8. All the above project, inclusing the Timeoff app, EKS, and Jenkins itself. can be deployed automatically through a 3rd Jenkins pipeline.
 
-Problems I faced:
+### Problems I faced
 
 1. Lots of incompatible dependencies.
 2. Outdated Dependencies.
 3. Base image needs much plugins, which increased the size of the Timeoff image.
 4. JCASC: Configuring Jenkins through code tends to be VERY complex.
 5. A manual Kubernetes cluster can be laggy sometimes.
-
-
-## Reference
-
-[FluentD_image]: https://github.com/312-bc/devops-tools-22b-centos/tree/ahmed/Kubernetes/EFKStack/FluenD_image
-[elasticsearch]: https://www.elastic.co/products/elasticsearch
-[fluentd]: https://www.fluentd.org/
-[Redshift]: https://aws.amazon.com/redshift/?nc=sn&loc=0
-[kibana]: https://www.elastic.co/products/kibana
-[logstash]: https://www.elastic.co/products/logstash
-[elk]: https://www.elastic.co/videos/introduction-to-the-elk-stack
-[docker-fluentd]: https://docs.docker.com/reference/logging/fluentd/
-[gcp-fluentd]: https://github.com/GoogleCloudPlatform/google-fluentd
-[efk]: https://docs.openshift.com/enterprise/3.1/install_config/aggregate_logging.html#overview
-[docker]: https://www.docker.com/
-[docker-compose]: https://docs.docker.com/compose/
-[Athena]: https://aws.amazon.com/athena/?nc=sn&loc=0
-[rested]: https://itunes.apple.com/au/app/rested-simple-http-requests/id421879749?mt=12
-[FluentD_image]: https://github.com/312-bc/devops-tools-22b-centos/tree/ahmed/Kubernetes/EFKStack/FluenD_image
