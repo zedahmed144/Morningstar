@@ -90,8 +90,8 @@ An ingress file is also provided. However, since there's no hostname provided to
 
 To access the apps, we will use:
 
-<code>IP_ADDRESS:30010</code>: our TimeOff app listens on port 30010.
-<code>IP_ADDRESS:31000</code>: our jenkins master listens on port 31000. (use this to access UI for configs).
+<code>http://morningstar-eb36af985ddc7e69.elb.us-east-1.amazonaws.com:80</code>: To access TimeOff App.
+<code>http://morningstar-eb36af985ddc7e69.elb.us-east-1.amazonaws.com:81</code>: To access Jenkins Master UI.
 
 ## Considerations
 
