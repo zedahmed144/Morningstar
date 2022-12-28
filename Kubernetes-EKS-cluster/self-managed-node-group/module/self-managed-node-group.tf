@@ -8,7 +8,7 @@ provider "aws" {
 module "eks_self_managed_node_group" {
   source = "../"
 
-  eks_cluster_name = "centos_eks"
+  eks_cluster_name = "morningstar_eks"
   instance_type    = "t3.medium"
   desired_capacity = 2
   min_size         = 2

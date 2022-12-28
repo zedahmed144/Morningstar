@@ -1,11 +1,11 @@
 # Configure Kubernetes to permit the nodes to register
 
 data "aws_eks_cluster" "selected" {
-  name = "centos_eks"
+  name = "morningstar_eks"
 }
 
 data "aws_eks_cluster_auth" "selected" {
-  name = "centos_eks"
+  name = "morningstar_eks"
 }
 
 provider "kubernetes" {

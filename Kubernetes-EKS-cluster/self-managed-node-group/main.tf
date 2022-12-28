@@ -6,7 +6,7 @@ data "aws_eks_cluster" "selected" {
 data "aws_vpc" "selected" {
   filter {
     name   = "tag:Name"
-    values = ["centos_vpc"]
+    values = ["morningstar_vpc"]
   }
 }
 
@@ -19,7 +19,7 @@ data "aws_ec2_instance_type" "selected" {
 data "aws_subnets" "public-subnets" {
     filter {
         name = "tag:Name"
-        values = ["centos_public_subnet"]
+        values = ["morningstar_public_subnet"]
     }
 }
 
@@ -114,8 +114,8 @@ resource "aws_security_group" "eks_node" {
     vpc_id      = data.aws_vpc.selected.id
 
     tags = {
-    Name                                    = "centos_eks_cluster_sg"
-    "kubernetes.io/cluster/centos_eks"      = "owned"
+    Name                                    = "morningstar_eks_cluster_sg"
+    "kubernetes.io/cluster/morningstar_eks"      = "owned"
   }
 }
 
