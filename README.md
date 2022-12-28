@@ -5,9 +5,9 @@ A sample environment to run a TimeOff application
 
 This project uses the following tools:
 
-- [Kubernetes][elasticsearch]
-- [Jenkins][fluentd]
-- [Terraform][kibana]
+- [Kubernetes](#Kubernetes)
+- [Jenkins](#Jenkins)
+- [Terraform](#Terraform)
 
 
 ### Content
