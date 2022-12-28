@@ -3,6 +3,7 @@ repo = morningstar
 region = us-east-1
 version = 1.0
 
+##test
 
 build:
 	docker build -t $(repo):$(version) .
