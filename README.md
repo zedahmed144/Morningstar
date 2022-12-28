@@ -59,7 +59,7 @@ Terraform is an infrastructure as code tool that lets you define both cloud and 
 ## Functionality
 
 <p align="center">
-  <img width="500" height="300" src="https://raw.githubusercontent.com/zedahmed144/Morningstar/master/solution-diagram.png?raw=true">
+  <img width="700" height="400" src="https://raw.githubusercontent.com/zedahmed144/Morningstar/master/solution-diagram.png?raw=true">
 </p>
 
 A CICD pipeline is setup to continiously integrate and deploy changes made to the code. A push to the GitHub repo will send a payload to jenkins which will trigger a new build of our application, as well as deploying that to our infrastructure.
